@@ -18,7 +18,7 @@
     }
 </style>
 
-<body style="font-family: Open Sans, sans-serif">
+<body class="h-full" style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
@@ -27,8 +27,19 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex items-center md:mt-0 mt-8">
+                @guest()
+                    <div class="flex space-x-2"><a href="/register" class="text-xs font-bold uppercase">Register</a>
+                        <a href="/login" class="text-xs font-bold uppercase">Login</a></div>
+
+                @else
+                    <span class="text-xs font-bold uppercase">Welcome back {{auth()->user()->name}}</span>
+                    <form  action="/logout" method="post">
+                        @csrf
+                        <button class="bg-gray-100 border border-gray-200 capitalize font-semibold ml-4 p-2 rounded-2xl text-blue-500" type="submit">logout</button>
+                    </form>
+                @endguest
+
 
                 <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
@@ -66,4 +77,10 @@
             </div>
         </footer>
     </section>
+@if(session()->has('success'))
+    <p x-data="{show: true}"
+       x-init="setTimeout(() => show= false, 4000)"
+       x-show="show"
+            class="bg-blue-500 bottom-5 capitalize fixed p-3 right-5 rounded-xl text-white  ">{{session('success')}}</p>
+@endif
 </body>
