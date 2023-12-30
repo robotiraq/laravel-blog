@@ -49,6 +49,21 @@
                 </div>
 
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                    @auth()
+                        <form action="/posts/{{$post->slug}}/comments" method="POST">
+                            @csrf
+                            <textarea class="w-full p-2" name="body" id="body" rows="5" placeholder="write your comment"
+                                      required></textarea>
+                            <div class="flex justify-end ">
+                                <button class="py-2 px-4 bg-blue-500 text-white rounded" type="submit">Post</button>
+                            </div>
+                        </form>
+
+                    @else
+                        <p class="font-bold"><a class="underline  text-blue-500 " href="/login">Login</a> first to add a comment</p>
+                    @endauth
+
+
                     @foreach($post->comments as $comment)
                         <x-post-comment :comment="$comment"/>
 
