@@ -6,13 +6,15 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
-                        Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                        Published
+                        <time>{{ $post->created_at->diffForHumans() }}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
-                            <a href="/?author={{$post->author->username}}"><h5 class="font-bold">{{$post->author->name}}</h5></a>
+                            <a href="/?author={{$post->author->username}}"><h5
+                                        class="font-bold">{{$post->author->name}}</h5></a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +37,7 @@
                         </a>
 
                         <div class="space-x-2">
-                            <x-category-button :category="$post->category" />
+                            <x-category-button :category="$post->category"/>
                         </div>
                     </div>
 
@@ -45,6 +47,14 @@
 
                     <div class="space-y-4 lg:text-lg leading-loose">{!! $post->body !!}</div>
                 </div>
+
+                <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                    @foreach($post->comments as $comment)
+                        <x-post-comment :comment="$comment"/>
+
+                    @endforeach
+
+                </section>
             </article>
         </main>
     </section>
