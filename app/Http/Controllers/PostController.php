@@ -72,7 +72,10 @@ class PostController extends Controller
             'category_id'=>'required|exists:categories,id'
         ]);
 
-        if (request()->file('thumbnail')){
+        if (isset($attributes['thumbnail'])){
+            if ($post->thumbnail){
+                \Storage::delete($post->thumbnail);
+            }
             $attributes['thumbnail']= \request()->file('thumbnail')->store('thumbnails');
         }
         $post->update($attributes);
@@ -80,7 +83,7 @@ class PostController extends Controller
         return back()->with('success','Post updated');
     }
 
-    public function delete(Post $post)
+    public function destroy(Post $post)
     {
         if ($post->thumbnail){
             \Storage::delete($post->thumbnail);

@@ -29,4 +29,4 @@ Route::get('admin/posts/create',[PostController::class,'create']);
 Route::post('admin/posts',[PostController::class,'store']);
 Route::get('admin/posts/{post}/edit',[PostController::class,'edit']);
 Route::patch('admin/posts/{post}',[PostController::class,'update']);
-Route::delete('admin/posts/{post}',[PostController::class,'delete']);
+Route::delete('admin/posts/{post}',[PostController::class,'destroy']);
