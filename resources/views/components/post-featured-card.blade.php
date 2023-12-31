@@ -32,29 +32,33 @@
             </div>
 
             <footer class="flex justify-between items-center mt-8">
-                <div class="flex items-center text-sm">
+                <div class="flex items-center text-sm truncate">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
-                    <div class="ml-3">
-                        <a href="/?author={{$post->author->username}}"><h5 class="font-bold">{{$post->author->name}}</h5></a>
+                    <div class="ml-3 truncate">
+                        <a href="/?author={{$post->author->username}}"><h5
+                                    class="font-bold">{{$post->author->name}}</h5></a>
 
                     </div>
                 </div>
 
                 <div class="flex space-x-2">
                     <a href="/posts/{{ $post->slug }}"
-                       class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
+                       class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-4"
                     >Read More</a>
+                </div>
+            </footer>
+            @can('admin')
+                <div class="flex space-x-4 mt-2 justify-center">
                     <a href="/admin/posts/{{ $post->id }}/edit"
-                       class="transition-colors duration-300 text-xs text-white font-semibold bg-blue-300 hover:bg-blue-500 rounded-full py-2 px-8"
+                       class="transition-colors duration-300 text-xs text-white font-semibold bg-blue-300 hover:bg-blue-500 rounded-full py-2 px-4"
                     >Edit</a>
                     <form action="/admin/posts/{{$post->id}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button class="transition-colors duration-300 text-xs text-white font-semibold bg-red-300 hover:bg-red-500 rounded-full py-2 px-8" type="submit">Delete</button>
+                        <button class="transition-colors duration-300 text-xs text-white font-semibold bg-red-300 hover:bg-red-500 rounded-full py-2 px-4" type="submit">Delete</button>
                     </form>
                 </div>
-
-            </footer>
+            @endcan
         </div>
     </div>
 </article>
