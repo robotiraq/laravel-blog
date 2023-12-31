@@ -82,8 +82,10 @@ class PostController extends Controller
 
     public function delete(Post $post)
     {
+        if ($post->thumbnail){
+            \Storage::delete($post->thumbnail);
+        }
         $post->delete();
-
         return back()->with('success','Post deleted');
     }
 }
