@@ -3,7 +3,7 @@
         <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                    <img src="/images/illustration-1.png" alt="" class="rounded-xl">
+                    <img src="{{asset('storage/'.$post->thumbnail)}}" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
                         Published
@@ -53,11 +53,15 @@
                         <form action="/posts/{{$post->slug}}/comments" method="POST">
                             @csrf
                             <textarea class="w-full p-2" name="body" id="body" rows="5" placeholder="write your comment"
-                                      required></textarea>
+                                    required></textarea>
                             <div class="flex justify-end ">
                                 <button class="py-2 px-4 bg-blue-500 text-white rounded" type="submit">Post</button>
                             </div>
                         </form>
+
+                        @error('body')
+                           <p class="text-xs text-red-500"> {{ $message }} </p>
+                        @enderror
 
                     @else
                         <p class="font-bold"><a class="underline  text-blue-500 " href="/login">Login</a> first to add a comment</p>

@@ -16,7 +16,7 @@ class PostCommentsController extends Controller
            'body' => request()->body,
            'user_id'=> auth()->user()->id
         ]);
-        return redirect()->back();
+        return back();
     }
 
 }
