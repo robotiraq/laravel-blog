@@ -30,7 +30,7 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0 flex items-center md:mt-0 mt-8">
+            <div class="flex items-center md:mt-0 mt-8">
                 @guest()
                     <div class="flex space-x-2"><a href="/register" class="text-xs font-bold uppercase">Register</a>
                         <a href="/login" class="text-xs font-bold uppercase">Login</a></div>
@@ -40,9 +40,12 @@
                         <x-slot:trigger>
                             <span class="text-xs font-bold uppercase cursor-pointer">Welcome back {{auth()->user()->name}}</span>
                         </x-slot:trigger>
-                        <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
-                            Create post
-                        </x-dropdown-item>
+                        @can('admin')
+                            <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">
+                                Create post
+                            </x-dropdown-item>
+                        @endcan
+
                         <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Logout</x-dropdown-item>
 
                         <form id="logout-form" action="/logout" method="post">
