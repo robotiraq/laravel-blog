@@ -14,6 +14,11 @@ class MenuController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('menu.create');
+    }
+
     public function show($id)
     {
         $data = Menu::findOrFail($id);
