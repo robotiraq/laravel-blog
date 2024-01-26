@@ -6,7 +6,7 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="/menu" method="POST">
+            <form class="space-y-6" action="/api/menu" method="POST">
                 @csrf
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Menu Name</label>
