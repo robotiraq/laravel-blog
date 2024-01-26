@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\FoodCategory;
+use App\Models\FoodItem;
+use App\Models\Menu;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -22,5 +25,9 @@ class DatabaseSeeder extends Seeder
         Post::factory(5)->create([
 //            'user_id' => $user->id
         ]);
+
+        Menu::factory()->create();
+        FoodCategory::factory()->create();
+        FoodItem::factory()->create();
     }
 }
