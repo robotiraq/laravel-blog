@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FoodCategory;
+use App\Models\FoodItem;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,11 @@ class MenuController extends Controller
     public function index()
     {
         return response()->json([
-            'menus' => Menu::all()
+            'menus' => Menu::query()->with([
+                'categories' => fn ($q) => $q->with([
+                    'foodItems'
+                ])
+            ])->get()
         ]);
     }
 
@@ -21,9 +27,12 @@ class MenuController extends Controller
 
     public function show($id)
     {
-        $data = Menu::findOrFail($id);
+        $categories = FoodCategory::all()->where('menu_id',$id);
         return response()->json([
-            $data->meals
+            [
+                'menu' =>   Menu::findOrFail($id),
+                'food_items'=> FoodItem::all()->where('food_category_id',$categories)
+            ]
         ]);
     }
 
