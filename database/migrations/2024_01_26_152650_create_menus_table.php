@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('restaurant');
             $table->string('thumbnail')->nullable();
+            $table->boolean('is_published')->nullable()->default(0);
         });
     }
 

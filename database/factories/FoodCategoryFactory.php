@@ -18,6 +18,7 @@ class FoodCategoryFactory extends Factory
     {
         return [
            "name" => $this->faker->name,
+            'slug' => $this->faker->slug,
             "menu_id" => 1
         ];
     }
