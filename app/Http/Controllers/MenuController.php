@@ -12,7 +12,7 @@ class MenuController extends Controller
     public function index()
     {
         return response()->json([
-            'menus' => Menu::query()->where('is_published',true)->with([
+            'menus' => Menu::query()->where('id',1)->with([
                 'categories' => fn ($q) => $q->with([
                     'foodItems'
                 ])
