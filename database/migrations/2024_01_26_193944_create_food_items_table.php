@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('desc');
             $table->decimal('price');
             $table->foreignIdFor(FoodCategory::class)->constrained();
+            $table->string('thumbnail')->nullable();
         });
     }
 

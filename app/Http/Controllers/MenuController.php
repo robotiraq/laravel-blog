@@ -39,13 +39,17 @@ class MenuController extends Controller
     public function store()
     {
         $attributes = \request()->validate([
-            'name' => 'required|min:1|max:255'
+            'name' => 'required|min:1|max:255',
+            'restaurant' => 'required|min:1|max:255',
+            'thumbnail'=> 'image|required'
         ]);
-
-        Menu::create($attributes);
+        $attributes['thumbnail']= \request()->file('thumbnail')->store('thumbnails');
+       $menu = Menu::create($attributes);
 
         $data = [
             'message'=>'Menu created',
+            'menu_id'=> $menu->id,
+            'menu_name' => $menu->name,
             'status'=>201
         ];
         return response()->json($data,201);
