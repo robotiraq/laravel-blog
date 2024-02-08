@@ -25,12 +25,12 @@ class Login extends Component
         }
 
         session()->regenerate();
-        return redirect('/');
+        return redirect('/')->with('success','welcome back');
     }
 
     public function render()
     {
 
-        return view('livewire.login')->layout('components.layout');
+        return view('livewire.session.login');
     }
 }
