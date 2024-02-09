@@ -44,6 +44,10 @@
                 @error('thumbnail')
                 <p class="text-xs text-red-500"> {{ $message }}</p>
                 @enderror
+                @if ($thumbnail)
+                    Photo Preview:
+                    <img class="max-w-xl" src="{{ $thumbnail->temporaryUrl() }}">
+                @endif
             </div>
 
             <div class="flex flex-col mt-2">
