@@ -31,7 +31,7 @@ class Post extends Component
         $this->validate();
         $attributes = array_merge($this->except('categories'),[
             'user_id'=>auth()->user()->id,
-            'thumbnail'=>$this->thumbnail->store('thumbnails')
+            'thumbnail'=>$this->thumbnail->storePublicly('thumbnails')
         ]);
         \App\Models\Post::create($attributes);
 
