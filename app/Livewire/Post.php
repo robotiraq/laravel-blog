@@ -28,7 +28,7 @@ class Post extends Component
 
     public function create()
     {
-        dd($this->thumbnail);
+
         $this->validate();
         $attributes = array_merge($this->except('categories'),[
             'user_id'=>auth()->user()->id,
